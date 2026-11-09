@@ -33,11 +33,12 @@ El servidor queda en `http://localhost:3000`. La base se crea en `data/workshop.
 | POST | `/auth/login` | Público | Valida credenciales y entrega JWT con vencimiento. |
 | POST | `/products` | JWT | Crea un producto; responde 201. |
 | GET | `/products` | JWT | Devuelve la lista; responde 200. |
+| GET | `/products?favorite=true` | JWT | Devuelve solo los productos favoritos. Usa `favorite=false` para los demás. |
 | GET | `/products/:id` | JWT | Devuelve un producto o 404. |
 | PUT | `/products/:id` | JWT | Actualiza uno o más campos o responde 404. |
 | DELETE | `/products/:id` | JWT | Elimina; responde 204 o 404. |
 
-Los campos editables son `name` (texto obligatorio al crear), `description` (texto opcional) y `price` (número obligatorio, mayor o igual a cero). En Postman, para las rutas de productos selecciona **Authorization > Bearer Token** y pega el token obtenido en el login.
+Los campos editables son `name` (texto obligatorio al crear), `description` (texto opcional), `price` (número obligatorio, mayor o igual a cero) e `is_favorite` (booleano, opcional y falso por defecto). Para marcar un favorito al crear o actualizar, envía `"is_favorite": true`; filtra los favoritos con `GET /products?favorite=true`. En Postman, para las rutas de productos selecciona **Authorization > Bearer Token** y pega el token obtenido en el login.
 
 ## Prueba rápida en Postman
 
